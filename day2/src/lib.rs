@@ -30,9 +30,21 @@ fn int_code(mut program: Vec<usize>) -> usize {
 
     loop {
         let instruction = program[instruction_pointer];
-        let parameter1 = if 99 == instruction { 0 } else { program[instruction_pointer + 1] };
-        let parameter2 = if 99 == instruction { 0 } else { program[instruction_pointer + 2] };
-        let parameter3 = if 99 == instruction { 0 } else { program[instruction_pointer + 3] };
+        let parameter1 = if 99 == instruction {
+            0
+        } else {
+            program[instruction_pointer + 1]
+        };
+        let parameter2 = if 99 == instruction {
+            0
+        } else {
+            program[instruction_pointer + 2]
+        };
+        let parameter3 = if 99 == instruction {
+            0
+        } else {
+            program[instruction_pointer + 3]
+        };
 
         match instruction {
             1 => program[parameter3] = program[parameter1] + program[parameter2],
@@ -55,7 +67,10 @@ mod tests {
 
     #[test]
     fn test_int_code() {
-        assert_eq!(int_code(parse_split_input("1,9,10,3,2,3,11,0,99,30,40,50", ",")), 3500);
+        assert_eq!(
+            int_code(parse_split_input("1,9,10,3,2,3,11,0,99,30,40,50", ",")),
+            3500
+        );
         assert_eq!(int_code(parse_split_input("1,0,0,0,99", ",")), 2);
         assert_eq!(int_code(parse_split_input("1,1,1,4,99,5,6,0,99", ",")), 30);
     }
